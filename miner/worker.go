@@ -915,6 +915,10 @@ func (w *worker) commitNewWork(interrupt *int32, noempty bool, timestamp int64) 
 	if w.chainConfig.DAOForkSupport && w.chainConfig.DAOForkBlock != nil && w.chainConfig.DAOForkBlock.Cmp(header.Number) == 0 {
 		misc.ApplyDAOHardFork(env.state)
 	}
+
+	if w.chainConfig.GENESYSForkBlock != nil && w.chainConfig.GENESYSForkBlock.Cmp(header.Number) == 0 {
+		misc.ApplyGENESYSHardFork(env.state, w.chainConfig.ChainID)
+	}
 	// Accumulate the uncles for the current block
 	uncles := make([]*types.Header, 0, 2)
 	commitUncles := func(blocks map[common.Hash]*types.Block) {
