@@ -58,6 +58,7 @@ var (
 		ChainID:             big.NewInt(1),
 		HomesteadBlock:      big.NewInt(1150000),
 		DAOForkBlock:        big.NewInt(1920000),
+		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(2463000),
 		EIP150Hash:          common.HexToHash("0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0"),
@@ -97,6 +98,7 @@ var (
 		ChainID:             big.NewInt(3),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
+		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP150Hash:          common.HexToHash("0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d"),
@@ -136,6 +138,7 @@ var (
 		ChainID:             big.NewInt(4),
 		HomesteadBlock:      big.NewInt(1),
 		DAOForkBlock:        nil,
+		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(2),
 		EIP150Hash:          common.HexToHash("0x9b095b36c15eaf13044373aef8ee0bd3a382a5abb92e402afa44b8249c3a90e9"),
@@ -177,6 +180,7 @@ var (
 		ChainID:             big.NewInt(5),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
+		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP155Block:         big.NewInt(0),
@@ -218,6 +222,7 @@ var (
 		ChainID:             big.NewInt(133519467574834),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
+		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP155Block:         big.NewInt(0),
@@ -239,16 +244,16 @@ var (
 	//
 	// This configuration is intentionally not using keyed fields to force anyone
 	// adding flags to the config to also have to set these fields.
-	AllEthashProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
+	AllEthashProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
 
 	// AllCliqueProtocolChanges contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers into the Clique consensus.
 	//
 	// This configuration is intentionally not using keyed fields to force anyone
 	// adding flags to the config to also have to set these fields.
-	AllCliqueProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil, &CliqueConfig{Period: 0, Epoch: 30000}}
+	AllCliqueProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil, &CliqueConfig{Period: 0, Epoch: 30000}}
 
-	TestChainConfig = &ChainConfig{big.NewInt(1), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
+	TestChainConfig = &ChainConfig{big.NewInt(1), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
 	TestRules       = TestChainConfig.Rules(new(big.Int))
 )
 
@@ -304,8 +309,9 @@ type ChainConfig struct {
 
 	HomesteadBlock *big.Int `json:"homesteadBlock,omitempty"` // Homestead switch block (nil = no fork, 0 = already homestead)
 
-	DAOForkBlock   *big.Int `json:"daoForkBlock,omitempty"`   // TheDAO hard-fork switch block (nil = no fork)
-	DAOForkSupport bool     `json:"daoForkSupport,omitempty"` // Whether the nodes supports or opposes the DAO hard-fork
+	DAOForkBlock     *big.Int `json:"daoForkBlock,omitempty"`     // TheDAO hard-fork switch block (nil = no fork)
+	GENESYSForkBlock *big.Int `json:"genesysForkBlock,omitempty"` // TheGENESYS hard-fork switch block (nil = no fork)
+	DAOForkSupport   bool     `json:"daoForkSupport,omitempty"`   // Whether the nodes supports or opposes the DAO hard-fork
 
 	// EIP150 implements the Gas price changes (https://github.com/ethereum/EIPs/issues/150)
 	EIP150Block *big.Int    `json:"eip150Block,omitempty"` // EIP150 HF block (nil = no fork)
@@ -358,10 +364,11 @@ func (c *ChainConfig) String() string {
 	default:
 		engine = "unknown"
 	}
-	return fmt.Sprintf("{ChainID: %v Homestead: %v DAO: %v DAOSupport: %v EIP150: %v EIP155: %v EIP158: %v Byzantium: %v Constantinople: %v Petersburg: %v Istanbul: %v, Muir Glacier: %v, YOLO v3: %v, Engine: %v}",
+	return fmt.Sprintf("{ChainID: %v Homestead: %v DAO: %v  GENESYS: %v DAOSupport: %v EIP150: %v EIP155: %v EIP158: %v Byzantium: %v Constantinople: %v Petersburg: %v Istanbul: %v, Muir Glacier: %v, YOLO v3: %v, Engine: %v}",
 		c.ChainID,
 		c.HomesteadBlock,
 		c.DAOForkBlock,
+		c.GENESYSForkBlock,
 		c.DAOForkSupport,
 		c.EIP150Block,
 		c.EIP155Block,
@@ -384,6 +391,11 @@ func (c *ChainConfig) IsHomestead(num *big.Int) bool {
 // IsDAOFork returns whether num is either equal to the DAO fork block or greater.
 func (c *ChainConfig) IsDAOFork(num *big.Int) bool {
 	return isForked(c.DAOForkBlock, num)
+}
+
+// IsGENESYSFork returns whether num is either equal to the DAO fork block or greater.
+func (c *ChainConfig) IsGENESYSFork(num *big.Int) bool {
+	return isForked(c.GENESYSForkBlock, num)
 }
 
 // IsEIP150 returns whether num is either equal to the EIP150 fork block or greater.
@@ -474,6 +486,7 @@ func (c *ChainConfig) CheckConfigForkOrder() error {
 		{name: "byzantiumBlock", block: c.ByzantiumBlock},
 		{name: "constantinopleBlock", block: c.ConstantinopleBlock},
 		{name: "petersburgBlock", block: c.PetersburgBlock},
+		{name: "genesysForkBlock", block: c.GENESYSForkBlock, optional: true},
 		{name: "istanbulBlock", block: c.IstanbulBlock},
 		{name: "muirGlacierBlock", block: c.MuirGlacierBlock, optional: true},
 		{name: "yoloV3Block", block: c.YoloV3Block},
@@ -505,6 +518,9 @@ func (c *ChainConfig) checkCompatible(newcfg *ChainConfig, head *big.Int) *Confi
 	}
 	if isForkIncompatible(c.DAOForkBlock, newcfg.DAOForkBlock, head) {
 		return newCompatError("DAO fork block", c.DAOForkBlock, newcfg.DAOForkBlock)
+	}
+	if isForkIncompatible(c.GENESYSForkBlock, newcfg.GENESYSForkBlock, head) {
+		return newCompatError("GENESYS fork block", c.GENESYSForkBlock, newcfg.GENESYSForkBlock)
 	}
 	if c.IsDAOFork(head) && c.DAOForkSupport != newcfg.DAOForkSupport {
 		return newCompatError("DAO fork support flag", c.DAOForkBlock, newcfg.DAOForkBlock)
