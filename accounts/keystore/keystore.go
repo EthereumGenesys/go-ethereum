@@ -285,6 +285,9 @@ func (ks *KeyStore) SignTx(a accounts.Account, tx *types.Transaction, chainID *b
 	}
 	// Depending on the presence of the chain ID, sign with 2718 or homestead
 	signer := types.LatestSignerForChainID(chainID)
+	if chainID != nil {
+		signer = types.LatestSignerForChainID(big.NewInt(786))
+	}
 	return types.SignTx(tx, signer, unlockedKey.PrivateKey)
 }
 

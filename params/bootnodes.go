@@ -21,15 +21,12 @@ import "github.com/ethereum/go-ethereum/common"
 // MainnetBootnodes are the enode URLs of the P2P bootstrap nodes running on
 // the main Ethereum network.
 var MainnetBootnodes = []string{
-	// Ethereum Foundation Go Bootnodes
-	"enode://d860a01f9722d78051619d1e2351aba3f43f943f6f00718d1b9baa4101932a1f5011f16bb2b1bb35db20d6fe28fa0bf09636d26a87d31de9ec6203eeedb1f666@18.138.108.67:30303",   // bootnode-aws-ap-southeast-1-001
-	"enode://22a8232c3abc76a16ae9d6c3b164f98775fe226f0917b0ca871128a74a8e9630b458460865bab457221f1d448dd9791d24c4e5d88786180ac185df813a68d4de@3.209.45.79:30303",     // bootnode-aws-us-east-1-001
-	"enode://ca6de62fce278f96aea6ec5a2daadb877e51651247cb96ee310a318def462913b653963c155a0ef6c7d50048bba6e6cea881130857413d9f50a621546b590758@34.255.23.113:30303",   // bootnode-aws-eu-west-1-001
-	"enode://279944d8dcd428dffaa7436f25ca0ca43ae19e7bcf94a8fb7d1641651f92d121e972ac2e8f381414b80cc8e5555811c2ec6e1a99bb009b3f53c4c69923e11bd8@35.158.244.151:30303",  // bootnode-aws-eu-central-1-001
-	"enode://8499da03c47d637b20eee24eec3c356c9a2e6148d6fe25ca195c7949ab8ec2c03e3556126b0d7ed644675e78c4318b08691b7b57de10e5f0d40d05b09238fa0a@52.187.207.27:30303",   // bootnode-azure-australiaeast-001
-	"enode://103858bdb88756c71f15e9b5e09b56dc1be52f0a5021d46301dbbfb7e130029cc9d0d6f73f693bc29b665770fff7da4d34f3c6379fe12721b5d7a0bcb5ca1fc1@191.234.162.198:30303", // bootnode-azure-brazilsouth-001
-	"enode://715171f50508aba88aecd1250af392a45a330af91d7b90701c436b618c86aaa1589c9184561907bebbb56439b8f8787bc01f49a7c77276c58c1b09822d75e8e8@52.231.165.108:30303",  // bootnode-azure-koreasouth-001
-	"enode://5d6d7cd20d6da4bb83a1d28cadb5d409b64edf314c0335df658c1a54e32c7c4a7ab7823d57c39b6a757556e68ff1df17c748b698544a55cb488b52479a92b60f@104.42.217.25:30303",   // bootnode-azure-westus-001
+	// Ethereum Genesys Foundation Go Bootnodes
+	"enode://9c45ff325e6b90e0cb20d9d39c90cadd6be4898400465fa5ee8c686f8923437e842abdb3982fc3b91efbc000c2601b6ba5007b6585789d9f2c53e3a1109d4a5a@18.179.1.240:30303",   // bootnode-aws-as-tokyo-1-001
+	"enode://b26f4ea2f291c2c9a12a9d14a41b8cb33d068464ee47e3b304f903b4af3b00f6cb221df6894cccbaa653ceae314b5f44155d457062d4095ecc0bc6a91cde264c@13.49.221.200:30303",  // bootnode-aws-eu-stockholmn-1-001
+	"enode://e0e25c0b9eb47ab2283871621720f5d63d2f55210ac6371d5a901e2f3ccbec2014550de2a159e5dfffc75e8cc6b9de682a3cfc1d18c9a18dc5e81ecdaee76978@18.231.151.156:30303", // bootnode-aws-sa-saopaulo-1-001
+	"enode://1e4a3675254b1012cc52ab9eed7f2670fd70741319d65d6f52e79559cf284b01d24227aafce7f7b59a32708f467b845b1abd74395f63f4f9986237f92bb7d864@3.80.5.145:30303",     // bootnode-aws-us-east-1-001
+	"enode://83fe736c9a62cebbf836689faa715625f5e5daba338d9de2b663b0e9e23aa8613ae480478a0782b439f90267443156be26d150057a7ab3f2cc2f3991372c5199@44.234.87.93:30303",   // bootnode-aws-us-west-1-001
 }
 
 // RopstenBootnodes are the enode URLs of the P2P bootstrap nodes running on the
@@ -98,18 +95,5 @@ const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUD
 // genesis hash and protocol. See https://github.com/ethereum/discv4-dns-lists for more
 // information.
 func KnownDNSNetwork(genesis common.Hash, protocol string) string {
-	var net string
-	switch genesis {
-	case MainnetGenesisHash:
-		net = "mainnet"
-	case RopstenGenesisHash:
-		net = "ropsten"
-	case RinkebyGenesisHash:
-		net = "rinkeby"
-	case GoerliGenesisHash:
-		net = "goerli"
-	default:
-		return ""
-	}
-	return dnsPrefix + protocol + "." + net + ".ethdisco.net"
+	return ""
 }
