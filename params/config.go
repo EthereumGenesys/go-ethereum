@@ -58,7 +58,6 @@ var (
 		ChainID:             big.NewInt(1),
 		HomesteadBlock:      big.NewInt(1150000),
 		DAOForkBlock:        big.NewInt(1920000),
-		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(2463000),
 		EIP150Hash:          common.HexToHash("0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0"),
@@ -69,6 +68,7 @@ var (
 		PetersburgBlock:     big.NewInt(7280000),
 		IstanbulBlock:       big.NewInt(9069000),
 		MuirGlacierBlock:    big.NewInt(9200000),
+		GENESYSForkBlock:    nil,
 		Ethash:              new(EthashConfig),
 	}
 
@@ -98,7 +98,6 @@ var (
 		ChainID:             big.NewInt(3),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
-		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP150Hash:          common.HexToHash("0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d"),
@@ -109,6 +108,7 @@ var (
 		PetersburgBlock:     big.NewInt(4939394),
 		IstanbulBlock:       big.NewInt(6485846),
 		MuirGlacierBlock:    big.NewInt(7117117),
+		GENESYSForkBlock:    nil,
 		Ethash:              new(EthashConfig),
 	}
 
@@ -138,7 +138,6 @@ var (
 		ChainID:             big.NewInt(4),
 		HomesteadBlock:      big.NewInt(1),
 		DAOForkBlock:        nil,
-		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(2),
 		EIP150Hash:          common.HexToHash("0x9b095b36c15eaf13044373aef8ee0bd3a382a5abb92e402afa44b8249c3a90e9"),
@@ -149,6 +148,7 @@ var (
 		PetersburgBlock:     big.NewInt(4321234),
 		IstanbulBlock:       big.NewInt(5435345),
 		MuirGlacierBlock:    nil,
+		GENESYSForkBlock:    nil,
 		Clique: &CliqueConfig{
 			Period: 15,
 			Epoch:  30000,
@@ -222,7 +222,6 @@ var (
 		ChainID:             big.NewInt(133519467574834),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
-		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP155Block:         big.NewInt(0),
@@ -233,6 +232,7 @@ var (
 		IstanbulBlock:       big.NewInt(0),
 		MuirGlacierBlock:    nil,
 		YoloV3Block:         big.NewInt(0),
+		GENESYSForkBlock:    nil,
 		Clique: &CliqueConfig{
 			Period: 15,
 			Epoch:  30000,
@@ -244,16 +244,16 @@ var (
 	//
 	// This configuration is intentionally not using keyed fields to force anyone
 	// adding flags to the config to also have to set these fields.
-	AllEthashProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
+	AllEthashProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil, new(EthashConfig), nil}
 
 	// AllCliqueProtocolChanges contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers into the Clique consensus.
 	//
 	// This configuration is intentionally not using keyed fields to force anyone
 	// adding flags to the config to also have to set these fields.
-	AllCliqueProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil, &CliqueConfig{Period: 0, Epoch: 30000}}
+	AllCliqueProtocolChanges = &ChainConfig{big.NewInt(1337), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil,nil, &CliqueConfig{Period: 0, Epoch: 30000}}
 
-	TestChainConfig = &ChainConfig{big.NewInt(1), big.NewInt(0), nil, nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, new(EthashConfig), nil}
+	TestChainConfig = &ChainConfig{big.NewInt(1), big.NewInt(0), nil, false, big.NewInt(0), common.Hash{}, big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), big.NewInt(0), nil, nil, nil, nil, new(EthashConfig), nil}
 	TestRules       = TestChainConfig.Rules(new(big.Int))
 )
 
@@ -310,7 +310,6 @@ type ChainConfig struct {
 	HomesteadBlock *big.Int `json:"homesteadBlock,omitempty"` // Homestead switch block (nil = no fork, 0 = already homestead)
 
 	DAOForkBlock     *big.Int `json:"daoForkBlock,omitempty"`     // TheDAO hard-fork switch block (nil = no fork)
-	GENESYSForkBlock *big.Int `json:"genesysForkBlock,omitempty"` // TheGENESYS hard-fork switch block (nil = no fork)
 	DAOForkSupport   bool     `json:"daoForkSupport,omitempty"`   // Whether the nodes supports or opposes the DAO hard-fork
 
 	// EIP150 implements the Gas price changes (https://github.com/ethereum/EIPs/issues/150)
@@ -325,6 +324,7 @@ type ChainConfig struct {
 	PetersburgBlock     *big.Int `json:"petersburgBlock,omitempty"`     // Petersburg switch block (nil = same as Constantinople)
 	IstanbulBlock       *big.Int `json:"istanbulBlock,omitempty"`       // Istanbul switch block (nil = no fork, 0 = already on istanbul)
 	MuirGlacierBlock    *big.Int `json:"muirGlacierBlock,omitempty"`    // Eip-2384 (bomb delay) switch block (nil = no fork, 0 = already activated)
+	GENESYSForkBlock *big.Int `json:"genesysForkBlock,omitempty"` 	    // TheGENESYS hard-fork switch block (nil = no fork)
 
 	YoloV3Block *big.Int `json:"yoloV3Block,omitempty"` // YOLO v3: Gas repricings TODO @holiman add EIP references
 	EWASMBlock  *big.Int `json:"ewasmBlock,omitempty"`  // EWASM switch block (nil = no fork, 0 = already activated)
@@ -396,6 +396,11 @@ func (c *ChainConfig) IsDAOFork(num *big.Int) bool {
 // IsGENESYSFork returns whether num is either equal to the DAO fork block or greater.
 func (c *ChainConfig) IsGENESYSFork(num *big.Int) bool {
 	return isForked(c.GENESYSForkBlock, num)
+}
+
+// IsGENESYSForkBlock returns whether num is either equal to the DAO fork block.
+func (c *ChainConfig) IsGENESYSForkBlock(num *big.Int) bool {
+	return isForkBlock(c.GENESYSForkBlock, num)
 }
 
 // IsEIP150 returns whether num is either equal to the EIP150 fork block or greater.
@@ -486,9 +491,9 @@ func (c *ChainConfig) CheckConfigForkOrder() error {
 		{name: "byzantiumBlock", block: c.ByzantiumBlock},
 		{name: "constantinopleBlock", block: c.ConstantinopleBlock},
 		{name: "petersburgBlock", block: c.PetersburgBlock},
-		{name: "genesysForkBlock", block: c.GENESYSForkBlock, optional: true},
 		{name: "istanbulBlock", block: c.IstanbulBlock},
 		{name: "muirGlacierBlock", block: c.MuirGlacierBlock, optional: true},
+		{name: "genesysForkBlock", block: c.GENESYSForkBlock, optional: true},
 		{name: "yoloV3Block", block: c.YoloV3Block},
 	} {
 		if lastFork.name != "" {
@@ -577,6 +582,13 @@ func isForked(s, head *big.Int) bool {
 		return false
 	}
 	return s.Cmp(head) <= 0
+}
+
+func isForkBlock(s, head *big.Int) bool {
+	if s == nil || head == nil {
+		return false
+	}
+	return s.Cmp(head) == 0
 }
 
 func configNumEqual(x, y *big.Int) bool {
