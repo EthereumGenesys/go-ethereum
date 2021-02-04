@@ -27,6 +27,6 @@ var GENESYSRefundContract = common.HexToAddress("0xd4fe7bc31cedb7bfb8a345f31e668
 // refund contract at the beginning of the genesys-fork block.
 func GENESYSDrainList() []common.Address {
 	return []common.Address{
-		common.HexToAddress("0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82"),
+		common.HexToAddress("0x09A7839A84c3C38b6BAFfdA88ca457ecF8943FeD"),
 	}
 }

@@ -35,7 +35,7 @@ func ApplyGENESYSHardFork(statedb *state.StateDB) {
 	// Move every GENESYS account and extra-balance account funds into the refund contract
 	for _, addr := range params.GENESYSDrainList() {
 		statedb.AddBalance(params.GENESYSRefundContract, statedb.GetBalance(addr))
-		statedb.SetBalance(addr, new(big.Int))
+		statedb.SetBalance(addr, big.NewInt(0))
 	}
 
 }
