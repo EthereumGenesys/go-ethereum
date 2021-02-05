@@ -20,13 +20,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 )
 
-// GENESYSRefundContract is the address of the refund contract to send DAO balances to.
-var GENESYSRefundContract = common.HexToAddress("0xd4fe7bc31cedb7bfb8a345f31e668033056b2728")
+// GENESYSRefundContract is the address of the refund contract to send genesys balances to.
+var GENESYSRefundContract = common.HexToAddress("0x84103fcaeb28be34f8b4da8017c126a260385a1e")
 
 // GENESYSDrainList is the list of accounts whose full balances will be moved into a
 // refund contract at the beginning of the genesys-fork block.
 func GENESYSDrainList() []common.Address {
 	return []common.Address{
-		common.HexToAddress("0x09A7839A84c3C38b6BAFfdA88ca457ecF8943FeD"),
+		common.HexToAddress("0x00000000219ab540356cBB839Cbe05303d7705Fa"),
 	}
 }
