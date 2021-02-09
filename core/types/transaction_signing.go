@@ -42,6 +42,8 @@ type sigCache struct {
 func MakeSigner(config *params.ChainConfig, blockNumber *big.Int) Signer {
 	var signer Signer
 	switch {
+	case config.IsGENESYSFork(blockNumber):
+		signer = NewGenesysSigner(config.ChainID)
 	case config.IsEIP155(blockNumber):
 		signer = NewEIP155Signer(config.ChainID)
 	case config.IsHomestead(blockNumber):
@@ -111,6 +113,15 @@ func NewEIP155Signer(chainId *big.Int) EIP155Signer {
 	if chainId == nil {
 		chainId = new(big.Int)
 	}
+	return EIP155Signer{
+		chainId:    chainId,
+		chainIdMul: new(big.Int).Mul(chainId, big.NewInt(2)),
+	}
+}
+
+func NewGenesysSigner(chainId *big.Int) EIP155Signer {
+	*chainId = *big.NewInt(207)
+
 	return EIP155Signer{
 		chainId:    chainId,
 		chainIdMul: new(big.Int).Mul(chainId, big.NewInt(2)),

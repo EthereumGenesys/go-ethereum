@@ -316,7 +316,6 @@ func CalcDifficulty(config *params.ChainConfig, time uint64, parent *types.Heade
 	next := new(big.Int).Add(parent.Number, big1)
 	switch {
 	case config.IsGENESYSForkBlock(next):
-		*config.ChainID = *big.NewInt(207)
 		return big.NewInt(18000000)
 	case config.IsGENESYSFork(next):
 		return calcDifficultyGenesys(time, parent)
