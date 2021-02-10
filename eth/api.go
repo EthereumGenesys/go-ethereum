@@ -67,12 +67,18 @@ func (api *PublicEthereumAPI) Hashrate() hexutil.Uint64 {
 }
 
 // ChainId is the EIP-155 replay-protection chain id for the current ethereum chain config.
-func (api *PublicEthereumAPI) ChainId() (hexutil.Uint64, error) {
-	// if current block is at or past the EIP-155 replay-protection fork block, return chainID from config
+func (api *PublicEthereumAPI) ChainId() hexutil.Uint64 {
+	chainID := new(big.Int)
 	if config := api.e.blockchain.Config(); config.IsEIP155(api.e.blockchain.CurrentBlock().Number()) {
-		return (hexutil.Uint64)(config.ChainID.Uint64()), nil
+		if config := api.e.blockchain.Config(); config.IsGENESYSFork(api.e.blockchain.CurrentBlock().Number()) {
+			// think slot machine
+			chainID = big.NewInt(206)
+		} else {
+			chainID = config.ChainID
+		}
 	}
-	return hexutil.Uint64(0), fmt.Errorf("chain not synced beyond EIP-155 replay-protection fork block")
+
+	return (hexutil.Uint64)(chainID.Uint64())
 }
 
 // PublicMinerAPI provides an API to control the miner.
