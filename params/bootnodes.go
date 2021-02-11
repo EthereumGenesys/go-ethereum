@@ -98,7 +98,7 @@ const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUD
 // genesis hash and protocol. See https://github.com/ethereum/discv4-dns-lists for more
 // information.
 func KnownDNSNetwork(genesis common.Hash, protocol string) string {
-	var net string
+	/*var net string
 	switch genesis {
 	case MainnetGenesisHash:
 		net = "mainnet"
@@ -111,5 +111,6 @@ func KnownDNSNetwork(genesis common.Hash, protocol string) string {
 	default:
 		return ""
 	}
-	return dnsPrefix + protocol + "." + net + ".ethdisco.net"
+	return dnsPrefix + protocol + "." + net + ".ethdisco.net"*/
+	return ""
 }
