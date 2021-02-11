@@ -43,7 +43,7 @@ func MakeSigner(config *params.ChainConfig, blockNumber *big.Int) Signer {
 	var signer Signer
 	switch {
 	case config.IsGENESYSFork(blockNumber):
-		signer = NewEIP155Signer(big.NewInt(206))
+		signer = NewEIP155Signer(big.NewInt(786))
 	case config.IsEIP155(blockNumber):
 		signer = NewEIP155Signer(config.ChainID)
 	case config.IsHomestead(blockNumber):

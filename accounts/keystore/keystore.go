@@ -285,8 +285,7 @@ func (ks *KeyStore) SignTx(a accounts.Account, tx *types.Transaction, chainID *b
 	}
 	// Depending on the presence of the chain ID, sign with EIP155 or homestead
 	if chainID != nil {
-		//return types.SignTx(tx, types.NewEIP155Signer(chainID), unlockedKey.PrivateKey)
-		return types.SignTx(tx, types.NewEIP155Signer(big.NewInt(206)), unlockedKey.PrivateKey)
+		return types.SignTx(tx, types.NewEIP155Signer(big.NewInt(786)), unlockedKey.PrivateKey)
 	}
 	return types.SignTx(tx, types.HomesteadSigner{}, unlockedKey.PrivateKey)
 }

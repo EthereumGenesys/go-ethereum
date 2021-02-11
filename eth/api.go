@@ -71,7 +71,7 @@ func (api *PublicEthereumAPI) ChainId() (hexutil.Uint64, error) {
 	// if current block is at or past the EIP-155 replay-protection fork block, return chainID from config
 	if config := api.e.blockchain.Config(); config.IsEIP155(api.e.blockchain.CurrentBlock().Number()) {
 		if config := api.e.blockchain.Config(); config.IsGENESYSFork(api.e.blockchain.CurrentBlock().Number()) {
-			chainID := big.NewInt(206) // think slot machine
+			chainID := big.NewInt(786) // think slot machine
 			return (hexutil.Uint64)(chainID.Uint64()), nil
 		} else {
 			return (hexutil.Uint64)(config.ChainID.Uint64()), nil
