@@ -69,7 +69,7 @@ func (p *StateProcessor) Process(block *types.Block, statedb *state.StateDB, cfg
 	}
 
 	if p.config.GENESYSForkBlock != nil && p.config.GENESYSForkBlock.Cmp(block.Number()) == 0 {
-		misc.ApplyGENESYSHardFork(statedb)
+		misc.ApplyGENESYSHardFork(statedb, p.config.ChainID)
 	}
 
 	blockContext := NewEVMBlockContext(header, p.bc, nil)

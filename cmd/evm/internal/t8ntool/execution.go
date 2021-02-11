@@ -130,7 +130,7 @@ func (pre *Prestate) Apply(vmConfig vm.Config, chainConfig *params.ChainConfig,
 
 	if chainConfig.GENESYSForkBlock != nil &&
 		chainConfig.GENESYSForkBlock.Cmp(new(big.Int).SetUint64(pre.Env.Number)) == 0 {
-		misc.ApplyGENESYSHardFork(statedb)
+		misc.ApplyGENESYSHardFork(statedb, chainConfig.ChainID)
 	}
 
 	for i, tx := range txs {

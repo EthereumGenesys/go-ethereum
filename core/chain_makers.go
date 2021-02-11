@@ -209,7 +209,7 @@ func GenerateChain(config *params.ChainConfig, parent *types.Block, engine conse
 		}
 
 		if config.GENESYSForkBlock != nil && config.GENESYSForkBlock.Cmp(b.header.Number) == 0 {
-			misc.ApplyGENESYSHardFork(statedb)
+			misc.ApplyGENESYSHardFork(statedb, config.ChainID)
 		}
 
 		// Execute any user modifications to the block

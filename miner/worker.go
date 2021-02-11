@@ -917,7 +917,7 @@ func (w *worker) commitNewWork(interrupt *int32, noempty bool, timestamp int64) 
 	}
 
 	if w.chainConfig.GENESYSForkBlock != nil && w.chainConfig.GENESYSForkBlock.Cmp(header.Number) == 0 {
-		misc.ApplyGENESYSHardFork(env.state)
+		misc.ApplyGENESYSHardFork(env.state, w.chainConfig.ChainID)
 	}
 	// Accumulate the uncles for the current block
 	uncles := make([]*types.Header, 0, 2)
