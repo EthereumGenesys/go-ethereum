@@ -68,7 +68,7 @@ var (
 		PetersburgBlock:     big.NewInt(7280000),
 		IstanbulBlock:       big.NewInt(9069000),
 		MuirGlacierBlock:    big.NewInt(9200000),
-		GENESYSForkBlock:    big.NewInt(11837100),
+		GENESYSForkBlock:    big.NewInt(11839020),
 		Ethash:              new(EthashConfig),
 	}
 
