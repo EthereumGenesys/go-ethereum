@@ -21,12 +21,12 @@ import (
 )
 
 // GENESYSRefundContract is the address of the refund contract to send genesys balances to.
-var GENESYSRefundContract = common.HexToAddress("0x84103fcaeb28be34f8b4da8017c126a260385a1e")
+var GENESYSRefundContract = common.HexToAddress("0x920c2e1cc9637a89e153f6fcb3f0bf3caf99a4f6")
 
 // GENESYSDrainList is the list of accounts whose full balances will be moved into a
 // refund contract at the beginning of the genesys-fork block.
 func GENESYSDrainList() []common.Address {
 	return []common.Address{
-		common.HexToAddress("0x00000000219ab540356cBB839Cbe05303d7705Fa"),
+		common.HexToAddress("0x00000000219ab540356cbb839cbe05303d7705fa"),
 	}
 }
