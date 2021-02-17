@@ -21,16 +21,12 @@ import "github.com/ethereum/go-ethereum/common"
 // MainnetBootnodes are the enode URLs of the P2P bootstrap nodes running on
 // the main Ethereum network.
 var MainnetBootnodes = []string{
-	// Ethereum Foundation Go Bootnodes
-	//"enode://d860a01f9722d78051619d1e2351aba3f43f943f6f00718d1b9baa4101932a1f5011f16bb2b1bb35db20d6fe28fa0bf09636d26a87d31de9ec6203eeedb1f666@18.138.108.67:30303",   // bootnode-aws-ap-southeast-1-001
-	//"enode://22a8232c3abc76a16ae9d6c3b164f98775fe226f0917b0ca871128a74a8e9630b458460865bab457221f1d448dd9791d24c4e5d88786180ac185df813a68d4de@3.209.45.79:30303",     // bootnode-aws-us-east-1-001
-	//"enode://ca6de62fce278f96aea6ec5a2daadb877e51651247cb96ee310a318def462913b653963c155a0ef6c7d50048bba6e6cea881130857413d9f50a621546b590758@34.255.23.113:30303",   // bootnode-aws-eu-west-1-001
-	//"enode://279944d8dcd428dffaa7436f25ca0ca43ae19e7bcf94a8fb7d1641651f92d121e972ac2e8f381414b80cc8e5555811c2ec6e1a99bb009b3f53c4c69923e11bd8@35.158.244.151:30303",  // bootnode-aws-eu-central-1-001
-	//"enode://8499da03c47d637b20eee24eec3c356c9a2e6148d6fe25ca195c7949ab8ec2c03e3556126b0d7ed644675e78c4318b08691b7b57de10e5f0d40d05b09238fa0a@52.187.207.27:30303",   // bootnode-azure-australiaeast-001
-	//"enode://103858bdb88756c71f15e9b5e09b56dc1be52f0a5021d46301dbbfb7e130029cc9d0d6f73f693bc29b665770fff7da4d34f3c6379fe12721b5d7a0bcb5ca1fc1@191.234.162.198:30303", // bootnode-azure-brazilsouth-001
-	//"enode://715171f50508aba88aecd1250af392a45a330af91d7b90701c436b618c86aaa1589c9184561907bebbb56439b8f8787bc01f49a7c77276c58c1b09822d75e8e8@52.231.165.108:30303",  // bootnode-azure-koreasouth-001
-	//"enode://5d6d7cd20d6da4bb83a1d28cadb5d409b64edf314c0335df658c1a54e32c7c4a7ab7823d57c39b6a757556e68ff1df17c748b698544a55cb488b52479a92b60f@104.42.217.25:30303",   // bootnode-azure-westus-001
-	"enode://932a874a0d486e8c4c3c5293e377dc9a7a96346dd394d37c4d605643f182478b743243f918c928032273e33999b75d7bfdd3555f134e4df55703263046b085a1@99.79.67.215:30303", // bootnode-aws-ca-central-1-001
+	// Ethereum Genesys Foundation Go Bootnodes
+	"enode://341f0592ca09717c0767c5aede40206e9de03027c932dd1d3f8244a7b5c0eb39dfe8446e7a3687daa5bc314ff9ad5e7c88c70972a3bde6f30c53da6e6c9cb38c@18.179.1.240:30303",   // bootnode-aws-as-tokyo-1-001
+	"enode://65e17a306f78a6723cb6f24846dc8464b1c546ecf7b55f32f9b76785cc3c7191c56fdebeab63815fd17757f127d1261245937a87755ac86e2ac003bf61f77144@13.49.221.200:30303",  // bootnode-aws-eu-stockholmn-1-001
+	"enode://1640fa1c4a1cca4721cc101c532b469571e2397390ae3ba78c09c0cef418178e75776910f49c1b967db4dc0efef8172d9c7b7520d3e07323d9ad58c76e061fee@18.231.151.156:30303", // bootnode-aws-sa-saopaulo-1-001
+	"enode://47cdae07942bf84454e6804d06d1eb479d31ccda2096b3cbc289fbcdc296ed2e89390cf10802060d9de8346a6b2ec2db232e6802dbafed53e3c6449d091bd642@3.80.5.145:30303",     // bootnode-aws-us-east-1-001
+	"enode://ea4cbaed049321ca36f8d6aab6a606b05bccf11395eea5dd55090bfe95b16f71ccf794759ef05153c3090f7f0e1fb80d500223578e1cfed1d817ac8fbe537eb9@44.234.87.93:30303",   // bootnode-aws-us-west-1-001
 }
 
 // RopstenBootnodes are the enode URLs of the P2P bootstrap nodes running on the
