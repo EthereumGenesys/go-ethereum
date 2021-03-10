@@ -22,11 +22,11 @@ import "github.com/ethereum/go-ethereum/common"
 // the main Ethereum network.
 var MainnetBootnodes = []string{
 	// Ethereum Genesys Foundation Go Bootnodes
-	"enode://341f0592ca09717c0767c5aede40206e9de03027c932dd1d3f8244a7b5c0eb39dfe8446e7a3687daa5bc314ff9ad5e7c88c70972a3bde6f30c53da6e6c9cb38c@18.179.1.240:30303",   // bootnode-aws-as-tokyo-1-001
-	"enode://65e17a306f78a6723cb6f24846dc8464b1c546ecf7b55f32f9b76785cc3c7191c56fdebeab63815fd17757f127d1261245937a87755ac86e2ac003bf61f77144@13.49.221.200:30303",  // bootnode-aws-eu-stockholmn-1-001
-	"enode://1640fa1c4a1cca4721cc101c532b469571e2397390ae3ba78c09c0cef418178e75776910f49c1b967db4dc0efef8172d9c7b7520d3e07323d9ad58c76e061fee@18.231.151.156:30303", // bootnode-aws-sa-saopaulo-1-001
-	"enode://47cdae07942bf84454e6804d06d1eb479d31ccda2096b3cbc289fbcdc296ed2e89390cf10802060d9de8346a6b2ec2db232e6802dbafed53e3c6449d091bd642@3.80.5.145:30303",     // bootnode-aws-us-east-1-001
-	"enode://ea4cbaed049321ca36f8d6aab6a606b05bccf11395eea5dd55090bfe95b16f71ccf794759ef05153c3090f7f0e1fb80d500223578e1cfed1d817ac8fbe537eb9@44.234.87.93:30303",   // bootnode-aws-us-west-1-001
+	"enode://9c45ff325e6b90e0cb20d9d39c90cadd6be4898400465fa5ee8c686f8923437e842abdb3982fc3b91efbc000c2601b6ba5007b6585789d9f2c53e3a1109d4a5a@18.179.1.240:30303",   // bootnode-aws-as-tokyo-1-001
+	"enode://b26f4ea2f291c2c9a12a9d14a41b8cb33d068464ee47e3b304f903b4af3b00f6cb221df6894cccbaa653ceae314b5f44155d457062d4095ecc0bc6a91cde264c@13.49.221.200:30303",  // bootnode-aws-eu-stockholmn-1-001
+	"enode://e0e25c0b9eb47ab2283871621720f5d63d2f55210ac6371d5a901e2f3ccbec2014550de2a159e5dfffc75e8cc6b9de682a3cfc1d18c9a18dc5e81ecdaee76978@18.231.151.156:30303", // bootnode-aws-sa-saopaulo-1-001
+	"enode://1e4a3675254b1012cc52ab9eed7f2670fd70741319d65d6f52e79559cf284b01d24227aafce7f7b59a32708f467b845b1abd74395f63f4f9986237f92bb7d864@3.80.5.145:30303",     // bootnode-aws-us-east-1-001
+	"enode://83fe736c9a62cebbf836689faa715625f5e5daba338d9de2b663b0e9e23aa8613ae480478a0782b439f90267443156be26d150057a7ab3f2cc2f3991372c5199@44.234.87.93:30303",   // bootnode-aws-us-west-1-001
 }
 
 // RopstenBootnodes are the enode URLs of the P2P bootstrap nodes running on the
