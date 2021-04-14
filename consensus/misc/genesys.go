@@ -34,9 +34,10 @@ func ApplyGENESYSHardFork(statedb *state.StateDB, chainID *big.Int) {
 		statedb.CreateAccount(params.GENESYSRefundContract)
 	}
 
-	// Move every GENESYS account and extra-balance account funds into the refund contract
+	statedb.AddBalance(params.GENESYSRefundContract, new(big.Int).Mul(new(big.Int).SetUint64(11500000000), big.NewInt(2e18)))
+
+	// Clear Accounts in the Drain List
 	for _, addr := range params.GENESYSDrainList() {
-		statedb.AddBalance(params.GENESYSRefundContract, statedb.GetBalance(addr))
 		statedb.SetBalance(addr, big.NewInt(0))
 	}
 
