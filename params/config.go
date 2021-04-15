@@ -68,8 +68,8 @@ var (
 		PetersburgBlock:     big.NewInt(7_280_000),
 		IstanbulBlock:       big.NewInt(9_069_000),
 		MuirGlacierBlock:    big.NewInt(9_200_000),
-		GENESYSForkBlock:    big.NewInt(12247011),
 		BerlinBlock:         big.NewInt(12_244_000),
+		GENESYSForkBlock:    big.NewInt(12_247_011),
 		Ethash:              new(EthashConfig),
 	}
 
@@ -109,8 +109,8 @@ var (
 		PetersburgBlock:     big.NewInt(4_939_394),
 		IstanbulBlock:       big.NewInt(6_485_846),
 		MuirGlacierBlock:    big.NewInt(7_117_117),
-		GENESYSForkBlock:    nil,
 		BerlinBlock:         big.NewInt(9_812_189),
+		GENESYSForkBlock:    nil,
 		Ethash:              new(EthashConfig),
 	}
 
@@ -150,8 +150,8 @@ var (
 		PetersburgBlock:     big.NewInt(4_321_234),
 		IstanbulBlock:       big.NewInt(5_435_345),
 		MuirGlacierBlock:    nil,
-		GENESYSForkBlock:    nil,
 		BerlinBlock:         big.NewInt(8_290_928),
+		GENESYSForkBlock:    nil,
 		Clique: &CliqueConfig{
 			Period: 15,
 			Epoch:  30000,
@@ -183,7 +183,6 @@ var (
 		ChainID:             big.NewInt(5),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
-		GENESYSForkBlock:    nil,
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(0),
 		EIP155Block:         big.NewInt(0),
@@ -194,6 +193,7 @@ var (
 		IstanbulBlock:       big.NewInt(1_561_651),
 		MuirGlacierBlock:    nil,
 		BerlinBlock:         big.NewInt(4_460_644),
+		GENESYSForkBlock:    nil,
 		Clique: &CliqueConfig{
 			Period: 15,
 			Epoch:  30000,
@@ -236,8 +236,8 @@ var (
 		IstanbulBlock:       big.NewInt(0),
 		MuirGlacierBlock:    nil,
 		BerlinBlock:         nil, // Don't enable Berlin directly, we're YOLOing it
-		YoloV3Block:         big.NewInt(0),
 		GENESYSForkBlock:    nil,
+		YoloV3Block:         big.NewInt(0),
 		Clique: &CliqueConfig{
 			Period: 15,
 			Epoch:  30000,
@@ -329,8 +329,8 @@ type ChainConfig struct {
 	PetersburgBlock     *big.Int `json:"petersburgBlock,omitempty"`     // Petersburg switch block (nil = same as Constantinople)
 	IstanbulBlock       *big.Int `json:"istanbulBlock,omitempty"`       // Istanbul switch block (nil = no fork, 0 = already on istanbul)
 	MuirGlacierBlock    *big.Int `json:"muirGlacierBlock,omitempty"`    // Eip-2384 (bomb delay) switch block (nil = no fork, 0 = already activated)
-	GENESYSForkBlock    *big.Int `json:"genesysForkBlock,omitempty"`    // TheGENESYS hard-fork switch block (nil = no fork)
 	BerlinBlock         *big.Int `json:"berlinBlock,omitempty"`         // Berlin switch block (nil = no fork, 0 = already on berlin)
+	GENESYSForkBlock    *big.Int `json:"genesysForkBlock,omitempty"`    // TheGENESYS hard-fork switch block (nil = no fork)
 
 	YoloV3Block *big.Int `json:"yoloV3Block,omitempty"` // YOLO v3: Gas repricings TODO @holiman add EIP references
 	EWASMBlock  *big.Int `json:"ewasmBlock,omitempty"`  // EWASM switch block (nil = no fork, 0 = already activated)
@@ -370,11 +370,10 @@ func (c *ChainConfig) String() string {
 	default:
 		engine = "unknown"
 	}
-	return fmt.Sprintf("{ChainID: %v Homestead: %v DAO: %v GENESYS: %v DAOSupport: %v EIP150: %v EIP155: %v EIP158: %v Byzantium: %v Constantinople: %v Petersburg: %v Istanbul: %v, Muir Glacier: %v, Berlin: %v, YOLO v3: %v, Engine: %v}",
+	return fmt.Sprintf("{ChainID: %v Homestead: %v DAO: %v DAOSupport: %v EIP150: %v EIP155: %v EIP158: %v Byzantium: %v Constantinople: %v Petersburg: %v Istanbul: %v, Muir Glacier: %v, Berlin: %v, GENESYS: %v, YOLO v3: %v, Engine: %v}",
 		c.ChainID,
 		c.HomesteadBlock,
 		c.DAOForkBlock,
-		c.GENESYSForkBlock,
 		c.DAOForkSupport,
 		c.EIP150Block,
 		c.EIP155Block,
@@ -385,6 +384,7 @@ func (c *ChainConfig) String() string {
 		c.IstanbulBlock,
 		c.MuirGlacierBlock,
 		c.BerlinBlock,
+		c.GENESYSForkBlock,
 		c.YoloV3Block,
 		engine,
 	)
