@@ -500,8 +500,8 @@ func (c *ChainConfig) CheckConfigForkOrder() error {
 		{name: "petersburgBlock", block: c.PetersburgBlock},
 		{name: "istanbulBlock", block: c.IstanbulBlock},
 		{name: "muirGlacierBlock", block: c.MuirGlacierBlock, optional: true},
-		{name: "genesysForkBlock", block: c.GENESYSForkBlock, optional: true},
 		{name: "berlinBlock", block: c.BerlinBlock},
+		{name: "genesysForkBlock", block: c.GENESYSForkBlock, optional: true},
 		{name: "yoloV3Block", block: c.YoloV3Block},
 	} {
 		if lastFork.name != "" {
