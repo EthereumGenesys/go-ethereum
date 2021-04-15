@@ -69,7 +69,7 @@ var (
 		IstanbulBlock:       big.NewInt(9_069_000),
 		MuirGlacierBlock:    big.NewInt(9_200_000),
 		BerlinBlock:         big.NewInt(12_244_000),
-		GENESYSForkBlock:    big.NewInt(12_247_011),
+		GENESYSForkBlock:    big.NewInt(12_246_786),
 		Ethash:              new(EthashConfig),
 	}
 
