@@ -63,6 +63,9 @@ func MakeSigner(config *params.ChainConfig, blockNumber *big.Int) Signer {
 // have the current block number available, use MakeSigner instead.
 func LatestSigner(config *params.ChainConfig) Signer {
 	if config.ChainID != nil {
+		if config.GENESYSForkBlock != nil {
+			return NewEIP2930Signer(big.NewInt(786))
+		}
 		if config.BerlinBlock != nil || config.YoloV3Block != nil {
 			return NewEIP2930Signer(config.ChainID)
 		}
